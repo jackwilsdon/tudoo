@@ -1,0 +1,13 @@
+{
+  "camelcase": true,
+  "curly": true,
+  "eqeqeq": true,
+  "latedef": true,
+  "noempty": true,
+  "quotmark": true,
+  "undef": true,
+  "unused": true,
+  "browser": true,
+  "devel": true,
+  "node": true
+}
