@@ -62,5 +62,5 @@ gulp.task('server:dev', [ 'watch:dev' ], function() {
   });
 });
 
-gulp.task('default', [ 'dev' ]);
+gulp.task('default', [ 'dist' ]);
 gulp.task('server', [ 'server:dev' ]);
