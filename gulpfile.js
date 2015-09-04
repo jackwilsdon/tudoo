@@ -11,7 +11,6 @@ var plugins = loadPlugins(),
 var sourceDirectory = './src',
     distDirectory   = './dist',
     bowerDirectory  = join(sourceDirectory, 'lib'),
-    sourceGlob      = join(sourceDirectory, '**'),
     sourceHtmlGlob  = join(sourceDirectory, '**.html');
 
 gulp.task('clean:dist', function() {
