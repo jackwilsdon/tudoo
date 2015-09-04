@@ -18,7 +18,7 @@ gulp.task('clean:dev', function() {
 });
 
 gulp.task('clean:dist', function() {
-  return del(distDirectory).pipe(reload());
+  return del(distDirectory);
 });
 
 gulp.task('bower', function() {
