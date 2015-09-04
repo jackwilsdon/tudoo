@@ -29,6 +29,12 @@ gulp.task('copy:dev', [ 'clean:dev', 'bower' ], function() {
   return gulp.src(sourceGlob).pipe(gulp.dest(devDirectory)).pipe(reload());
 })
 
+gulp.task('copy:dist', [ 'clean:dist', 'bower' ], function() {
+  return gulp.src([
+    join(bowerDirectory, 'bootstrap', 'dist', 'fonts', '**')
+  ]).pipe(gulp.dest(join(distDirectory, 'fonts')));
+})
+
 gulp.task('usemin:dist', [ 'clean:dist', 'bower' ], function() {
   return gulp.src(join(sourceDirectory, '**.html')).pipe(plugins.usemin({
     css: [ plugins.minifyCss() ],
@@ -41,7 +47,7 @@ gulp.task('sync', function() {
 });
 
 gulp.task('dev', [ 'clean:dev', 'copy:dev' ]);
-gulp.task('dist', [ 'clean:dist', 'usemin:dist' ]);
+gulp.task('dist', [ 'clean:dist', 'copy:dist', 'usemin:dist' ]);
 
 gulp.task('watch:dev', [ 'dev' ], function() {
   return gulp.watch(sourceGlob, [ 'dev' ]);
