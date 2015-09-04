@@ -9,15 +9,10 @@ var plugins = loadPlugins(),
     sync    = browserSync.create();
 
 var sourceDirectory = './src',
-    devDirectory    = './dev',
     distDirectory   = './dist',
     bowerDirectory  = join(sourceDirectory, 'lib'),
     sourceGlob      = join(sourceDirectory, '**'),
     sourceHtmlGlob  = join(sourceDirectory, '**.html');
-
-gulp.task('clean:dev', function() {
-  return del(devDirectory);
-});
 
 gulp.task('clean:dist', function() {
   return del(distDirectory);
@@ -25,10 +20,6 @@ gulp.task('clean:dist', function() {
 
 gulp.task('bower', function() {
   return plugins.bower(bowerDirectory);
-});
-
-gulp.task('copy:dev', [ 'bower' ], function() {
-  return gulp.src(sourceGlob).pipe(gulp.dest(devDirectory));
 });
 
 gulp.task('copy:dist', [ 'bower' ], function() {
@@ -48,17 +39,15 @@ gulp.task('sync', function() {
   return gulp.src('bower.json').pipe(plugins.configSync()).pipe(gulp.dest('.'));
 });
 
-gulp.task('dev', [ 'copy:dev' ]);
 gulp.task('dist', [ 'copy:dist', 'usemin:dist' ]);
 
-gulp.task('server:dev', [ 'dev' ], function() {
+gulp.task('server', function() {
   sync.init({
     server: {
-      baseDir: devDirectory
+      baseDir: sourceDirectory
     },
     open: false
   });
 });
 
 gulp.task('default', [ 'dist' ]);
-gulp.task('server', [ 'server:dev' ]);
