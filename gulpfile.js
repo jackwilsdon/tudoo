@@ -4,31 +4,29 @@ var gulp        = require('gulp'),
     loadPlugins = require('gulp-load-plugins'),
     del         = require('del');
 
-var plugins = loadPlugins({
-  rename: {
-    'gulp-server-livereload': 'server'
-  }
-});
+var plugins = loadPlugins(),
+    reload  = plugins.connect.reload;
 
 var sourceDirectory = './src',
     devDirectory    = './dev',
     distDirectory   = './dist',
-    bowerDirectory  = join(sourceDirectory, 'lib');
+    bowerDirectory  = join(sourceDirectory, 'lib'),
+    sourceGlob      = join(sourceDirectory, '**');
 
 gulp.task('clean:dev', function() {
   return del(devDirectory);
 });
 
 gulp.task('clean:dist', function() {
-  return del(distDirectory);
+  return del(distDirectory).pipe(reload());
 });
 
 gulp.task('bower', function() {
-  return plugins.bower(bowerDirectory);
+  return plugins.bower(bowerDirectory).pipe(reload());
 });
 
 gulp.task('copy:dev', [ 'clean:dev', 'bower' ], function() {
-  return gulp.src(join(sourceDirectory, '**')).pipe(gulp.dest(devDirectory));
+  return gulp.src(sourceGlob).pipe(gulp.dest(devDirectory)).pipe(reload());
 })
 
 gulp.task('usemin:dist', [ 'clean:dist', 'bower' ], function() {
@@ -45,13 +43,25 @@ gulp.task('sync', function() {
 gulp.task('dev', [ 'clean:dev', 'copy:dev' ]);
 gulp.task('dist', [ 'clean:dist', 'usemin:dist' ]);
 
-gulp.task('server:dev', [ 'dev' ], function() {
-  return gulp.src(devDirectory).pipe(plugins.server({
-    livereload: {
-      enable: true,
-      clientConsole: true
-    }
-  }));
+gulp.task('watch:dev', [ 'dev' ], function() {
+  return gulp.watch(sourceGlob, [ 'dev' ]);
 });
+
+gulp.task('watch:dist', [ 'dist' ], function() {
+  return gulp.watch(sourceGlob, [ 'dist' ]);
+});
+
+gulp.task('server:dev', [ 'watch:dev' ], function() {
+  return plugins.connect.server({
+    livereload: true,
+    root: devDirectory
+  });
+});
+
+gulp.task('server:dist', [ 'watch:dist' ], function() {
+  return plugins.connect.server({
+    root: distDirectory
+  });
+})
 
 gulp.task('default', [ 'dist' ]);
