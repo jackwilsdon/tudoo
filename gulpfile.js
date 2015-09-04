@@ -1,7 +1,7 @@
 var join = require('path').join;
 
 var gulp        = require('gulp'),
-    loadPlugins = require('gulp-load-plugins');
+    loadPlugins = require('gulp-load-plugins'),
     del         = require('del');
 
 var plugins = loadPlugins({
