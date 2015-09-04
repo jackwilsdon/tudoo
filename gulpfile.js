@@ -71,3 +71,4 @@ gulp.task('server:dist', [ 'watch:dist' ], function() {
 })
 
 gulp.task('default', [ 'dist' ]);
+gulp.task('server', [ 'server:dist' ]);
