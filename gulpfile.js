@@ -50,11 +50,9 @@ gulp.task('dev', [ 'clean:dev', 'copy:dev' ]);
 gulp.task('dist', [ 'clean:dist', 'copy:dist', 'usemin:dist' ]);
 
 gulp.task('watch:dev', [ 'dev' ], function() {
-  return gulp.watch(sourceGlob, [ 'dev' ]);
-});
-
-gulp.task('watch:dist', [ 'dist' ], function() {
-  return gulp.watch(sourceGlob, [ 'dist' ]);
+  return gulp.watch('**', {
+    cwd: sourceDirectory
+  }, [ 'dev' ]);
 });
 
 gulp.task('server:dev', [ 'watch:dev' ], function() {
@@ -64,11 +62,5 @@ gulp.task('server:dev', [ 'watch:dev' ], function() {
   });
 });
 
-gulp.task('server:dist', [ 'watch:dist' ], function() {
-  return plugins.connect.server({
-    root: distDirectory
-  });
-})
-
-gulp.task('default', [ 'dist' ]);
-gulp.task('server', [ 'server:dist' ]);
+gulp.task('default', [ 'dev' ]);
+gulp.task('server', [ 'server:dev' ]);
