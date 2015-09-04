@@ -1,0 +1,6 @@
+bower_components
+.tmp
+node_modules
+dev
+dist
+src/lib
