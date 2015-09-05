@@ -1,7 +1,4 @@
 {
   "name": "tudoo",
-  "version": "0.1.0",
-  "devDependencies": {
-    "bootstrap": "~3.3.5"
-  }
+  "version": "0.1.0"
 }
