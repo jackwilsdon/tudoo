@@ -35,12 +35,6 @@ gulp.task('usemin:dist', [ 'bower' ], function() {
   })).pipe(gulp.dest(distDirectory));
 });
 
-gulp.task('sync', function() {
-  return gulp.src('bower.json').pipe(plugins.configSync()).pipe(gulp.dest('.'));
-});
-
-gulp.task('dist', [ 'copy:dist', 'usemin:dist' ]);
-
 gulp.task('server', function() {
   sync.init({
     server: {
@@ -53,4 +47,9 @@ gulp.task('server', function() {
   gulp.watch(sourceGlob).on('change', sync.reload);
 });
 
+gulp.task('sync', function() {
+  return gulp.src('bower.json').pipe(plugins.configSync()).pipe(gulp.dest('.'));
+});
+
+gulp.task('dist', [ 'clean:dist', 'copy:dist', 'usemin:dist' ]);
 gulp.task('default', [ 'dist' ]);
