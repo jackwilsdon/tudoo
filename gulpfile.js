@@ -11,6 +11,7 @@ var plugins = loadPlugins(),
 var sourceDirectory = './src',
     distDirectory   = './dist',
     bowerDirectory  = join(sourceDirectory, 'lib'),
+    sourceGlob      = join(sourceDirectory, '**'),
     sourceHtmlGlob  = join(sourceDirectory, '**.html');
 
 gulp.task('clean:dist', function() {
@@ -45,8 +46,11 @@ gulp.task('server', function() {
     server: {
       baseDir: sourceDirectory
     },
+    notify: false,
     open: false
   });
+
+  gulp.watch(sourceGlob).on('change', sync.reload);
 });
 
 gulp.task('default', [ 'dist' ]);
