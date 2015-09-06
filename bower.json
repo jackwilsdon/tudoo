@@ -1,4 +1,8 @@
 {
   "name": "tudoo",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "devDependencies": {
+    "backbone": "~1.2.3",
+    "underscore": "~1.8.3"
+  }
 }
