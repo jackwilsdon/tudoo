@@ -17,4 +17,11 @@ var app = app || {};
     el: $('#app-wrapper'),
     collection: app.Instance.taskCollection
   });
+
+  // Hack to fix hover on mobile devices
+  $('a').click(function() {
+    var $this = $(this);
+
+    $this.replaceWith($this.clone(true));
+  });
 })(app);
