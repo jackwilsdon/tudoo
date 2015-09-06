@@ -2,8 +2,47 @@
 <html>
   <head>
     <title>tudoo</title>
+
+    <!-- build:css css/tudoo.min.css -->
+      <link rel="stylesheet" href="/css/tudoo.css" />
+    <!-- endbuild -->
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <div id="app-wrapper" class="app-wrapper"></div>
+
+    <script type="text/template" id="app-template">
+      <div class="field-wrapper">
+        <label for="task-field">what do you want <a title="to do">tu doo</a>?</label>
+        <input type="text" id="task-field" placeholder="buy milk">
+      </div>
+
+      <div class="task-list-wrapper">
+        <ul id="task-list" class="task-list"></ul>
+        <ul id="task-list-info" class="task-list-info"></div>
+      </div>
+    </script>
+
+    <script type="text/template" id="task-template">
+      <a href="#"><%= value %></a>
+    </script>
+
+    <script type="text/template" id="info-template">
+      <li><a href="#" id="remove-completed">Remove <%= taskCount %> completed <%= taskWord %></a></li>
+    </script>
+
+    <!-- build:js js/tudoo.min.js -->
+      <script src="/lib/jquery/dist/jquery.js"></script>
+      <script src="/lib/underscore/underscore.js"></script>
+      <script src="/lib/backbone/backbone.js"></script>
+
+      <script src="/js/models.js"></script>
+      <script src="/js/collections.js"></script>
+      <script src="/js/views/task-view.js"></script>
+      <script src="/js/views/task-list-view.js"></script>
+      <script src="/js/views/task-list-info-view.js"></script>
+      <script src="/js/views/app-view.js"></script>
+
+      <script src="/js/tudoo.js"></script>
+    <!-- endbuild -->
   </body>
 </html>
