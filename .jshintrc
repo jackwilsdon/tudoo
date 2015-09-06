@@ -9,5 +9,11 @@
   "unused": true,
   "browser": true,
   "devel": true,
-  "node": true
+  "node": true,
+
+  "globals": {
+    "_": true,
+    "$": true,
+    "Backbone": true
+  }
 }
