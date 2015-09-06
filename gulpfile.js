@@ -35,7 +35,7 @@ gulp.task('usemin:dist', [ 'bower' ], function() {
   })).pipe(gulp.dest(distDirectory));
 });
 
-gulp.task('server', function() {
+gulp.task('server', [ 'bower' ], function() {
   sync.init({
     server: {
       baseDir: sourceDirectory
