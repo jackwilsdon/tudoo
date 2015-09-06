@@ -17,5 +17,4 @@ var app = app || {};
     el: $('#app-wrapper'),
     collection: app.Instance.taskCollection
   });
-
 })(app);
