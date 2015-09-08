@@ -14,6 +14,10 @@ var app = app || {};
     return 0;
   };
 
+  app.CategoryCollection = Backbone.Collection.extend({
+    model: app.Category
+  });
+
   app.TaskCollection = Backbone.Collection.extend({
     comparator: function(model, nextModel){
       if (!model.isCompleted() || !nextModel.isCompleted()) {
