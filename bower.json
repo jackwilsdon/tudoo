@@ -4,6 +4,7 @@
   "devDependencies": {
     "URIjs": "~1.16.0",
     "backbone": "~1.2.3",
+    "backbone-relational": "~0.9.0",
     "underscore": "~1.8.3"
   }
 }
